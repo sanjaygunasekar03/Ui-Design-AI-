@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #7C3AED; /* Purple */
+  --color-background: #F9FAFB; /* Light gray */
+  --color-card: rgba(255, 255, 255, 0.8); /* Translucent white */
+  --color-surface: rgba(255, 255, 255, 0.6); /* Lighter translucent */
+  --color-accent: #ec4899; /* Pink */
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-glow: rgba(124, 58, 237, 0.3);
+  --color-accent-glow: rgba(236, 72, 153, 0.3);
+  --font-family-sans: 'Inter', 'Noto Sans', sans-serif;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background: linear-gradient(135deg, #F9FAFB 0%, #f3f4f6 50%, #F9FAFB 100%);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at top left, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+              radial-gradient(ellipse at bottom right, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+}
+
+/* Glass effect utilities */
+.glass {
+  background: var(--color-card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-surface {
+  background: var(--color-surface);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+.glow-primary {
+  box-shadow: 0 0 20px var(--color-glow);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+.inner-glow {
+  position: relative;
+}
+
+.inner-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(192, 132, 252, 0.3), rgba(236, 72, 153, 0.3));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+
+/* Toast Animations */
+@keyframes toast-in {
+  from {
+    transform: translateY(100%) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-toast-in {
+  animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
